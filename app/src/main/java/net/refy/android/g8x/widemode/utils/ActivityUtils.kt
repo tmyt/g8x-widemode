@@ -11,10 +11,11 @@ class ActivityUtils(private val context: Context) {
 
     private val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE)
     private val cActivityManager = activityManager.javaClass
-    private val mSetWideMode = cActivityManager.getDeclaredMethod("setWideScreenMode", Boolean::class.java)
-    private val mGetWideMode = cActivityManager.getDeclaredMethod("getWideScreenMode")
+    private val mSetWideMode = cActivityManager.getMethod("setWideScreenMode", Boolean::class.java)
+    private val mGetWideMode = cActivityManager.getMethod("getWideScreenMode")
     private val mMoveToDisplayAsDisplayId =
-        cActivityManager.getDeclaredMethod("moveToDisplayAsDisplayId", Int::class.java, Int::class.java)
+        cActivityManager.getMethod("moveToDisplayAsDisplayId", Int::class.java, Int::class.java)
+    private val mMoveToDisplayEx = cActivityManager.getMethod("moveToDisplayEx", Int::class.java)
 
     private val displayUtils = DisplayHelperUtils(context)
 
@@ -42,7 +43,11 @@ class ActivityUtils(private val context: Context) {
         mMoveToDisplayAsDisplayId.invoke(activityManager, i, i2)
     }
 
-    fun canSwitchMode(): Boolean{
+    fun moveToDisplayEx(i: Int) {
+        mMoveToDisplayEx.invoke(activityManager, i)
+    }
+
+    fun canSwitchMode(): Boolean {
         return getGlobalScreenBrightnessMode() == 1 || isSecureWriteable()
     }
 
@@ -50,7 +55,7 @@ class ActivityUtils(private val context: Context) {
         return context.checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun getGlobalScreenBrightnessMode():Int{
+    private fun getGlobalScreenBrightnessMode(): Int {
         return Settings.Secure.getInt(context.contentResolver, "global_screen_brightness_mode", 1)
     }
 }

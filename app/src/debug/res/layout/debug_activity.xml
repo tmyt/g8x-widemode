@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button android:id="@+id/screen_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Turn ON Display"
+    />
+    <Button android:id="@+id/screen_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Turn OFF Display"
+    />
+    <Button android:id="@+id/widemode_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Turn ON Wide Mode"
+    />
+    <Button android:id="@+id/widemode_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Turn OFF Wide Mode"
+    />
+
+    <Button android:id="@+id/move_to_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Move to Cover"
+    />
+    <Button android:id="@+id/move_from_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Move from Cover"
+    />
+    <Button android:id="@+id/move_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Switch activities"
+    />
+
+</LinearLayout>
