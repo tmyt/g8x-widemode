@@ -5,9 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import net.refy.android.g8x.widemode.R
 
-class TaskerActionActivity : Activity() {
+class TaskerActionActivity : AppCompatActivity() {
 
     val EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB"
     val EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE"
@@ -35,7 +36,6 @@ class TaskerActionActivity : Activity() {
             show()
             getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
         }
-
     }
 
     private fun makeResult(mode: Int): Intent {
