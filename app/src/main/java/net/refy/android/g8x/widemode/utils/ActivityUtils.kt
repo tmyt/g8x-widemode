@@ -1,8 +1,11 @@
 package net.refy.android.g8x.widemode.utils
 
+import android.Manifest
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.provider.Settings
 
 class ActivityUtils(private val context: Context) {
 
@@ -37,5 +40,17 @@ class ActivityUtils(private val context: Context) {
 
     fun moveToDisplayAsDisplayId(i: Int, i2: Int) {
         mMoveToDisplayAsDisplayId.invoke(activityManager, i, i2)
+    }
+
+    fun canSwitchMode(): Boolean{
+        return getGlobalScreenBrightnessMode() == 1 || isSecureWriteable()
+    }
+
+    private fun isSecureWriteable(): Boolean {
+        return context.checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun getGlobalScreenBrightnessMode():Int{
+        return Settings.Secure.getInt(context.contentResolver, "global_screen_brightness_mode", 1)
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tasker_plugin_mode_labels">
+        <item>@string/tasker_plugin_mode_on</item>
+        <item>@string/tasker_plugin_mode_off</item>
+        <item>@string/tasker_plugin_mode_toggle</item>
+    </array>
+</resources>

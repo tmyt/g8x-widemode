@@ -3,4 +3,9 @@
     <string name="qs_label">ワイドモード</string>
     <string name="error_remote_exception">モード変更中にエラーが発生しました。</string>
     <string name="error_no_secure_writeable">設定で"メイン画面と同じ明るさに設定する"をONにしてください。</string>
+    <string name="tasker_message">このプラグインに設定項目はありません。</string>
+    <string name="tasker_plugin_name">ワイドモードを切替</string>
+    <string name="tasker_plugin_mode_on">ON</string>
+    <string name="tasker_plugin_mode_off">OFF</string>
+    <string name="tasker_plugin_mode_toggle">トグル</string>
 </resources>

@@ -28,7 +28,7 @@ class QSTileService : TileService() {
 
     override fun onClick() {
         super.onClick()
-        if(getGlobalScreenBrightnessMode() == 1 || isSecureWriteable()){
+        if(activityUtils.canSwitchMode()){
             try {
                 activityUtils.setWideMode(!isWide)
                 isWide = !isWide
@@ -59,13 +59,5 @@ class QSTileService : TileService() {
 
     private fun showToast(@StringRes resId: Int) {
         Toast.makeText(this, getString(resId), Toast.LENGTH_SHORT).show()
-    }
-
-    private fun isSecureWriteable(): Boolean {
-        return checkSelfPermission(Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun getGlobalScreenBrightnessMode():Int{
-        return Settings.Secure.getInt(this.contentResolver, "global_screen_brightness_mode", 1)
     }
 }

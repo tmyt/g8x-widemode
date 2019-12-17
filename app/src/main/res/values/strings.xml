@@ -3,4 +3,9 @@
     <string name="qs_label">Wide Mode</string>
     <string name="error_remote_exception">Error occurred while mode changing.</string>
     <string name="error_no_secure_writeable">Turn on "Keep the same as main screen" from System Settings.</string>
+    <string name="tasker_message">This plugin has no settings.</string>
+    <string name="tasker_plugin_name">Switch Wide Mode</string>
+    <string name="tasker_plugin_mode_on">Turn ON</string>
+    <string name="tasker_plugin_mode_off">Turn OFF</string>
+    <string name="tasker_plugin_mode_toggle">Toggle</string>
 </resources>
