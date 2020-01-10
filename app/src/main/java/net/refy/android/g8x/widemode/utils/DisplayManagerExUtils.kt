@@ -1,17 +1,26 @@
 package net.refy.android.g8x.widemode.utils
 
 import android.os.IBinder
+import net.refy.android.reflect.Reflect
 
-class DisplayManagerExUtils {
-    private val cServiceManager = Class.forName("android.os.ServiceManager")
-    private val mGetService = cServiceManager.getMethod("getService", String::class.java)
-    private val cStub = Class.forName("android.hardware.display.IDisplayManagerEx\$Stub")
-    private val mAsInterface = cStub.getDeclaredMethod("asInterface", IBinder::class.java)
-    private val displayManagerEx = mAsInterface.invoke(null, mGetService.invoke(null, "display"))
-
-    private val mGetCoverDisplayState = displayManagerEx.javaClass.getDeclaredMethod("getCoverDisplayState")
-
-    fun getCoverDisplayState(): Int {
-        return mGetCoverDisplayState(displayManagerEx) as Int
+class DisplayManagerExUtils : Reflect() {
+    class ServiceManager : Reflect() {
+        override val type = Class.forName("android.os.ServiceManager")
+        val getService by static<Any>(String::class.java)
     }
+
+    class IDisplayManager_Stub : Reflect() {
+        override val type = Class.forName("android.hardware.display.IDisplayManagerEx\$Stub")
+        val asInterface by static<Any>(IBinder::class.java)
+    }
+
+    private val serviceManager = ServiceManager()
+    private val displayManagerStub = IDisplayManager_Stub()
+
+    override val value = displayManagerStub.asInterface(serviceManager.getService("display"))
+    override val type: Class<*> = value.javaClass
+
+    val getCoverDisplayState by virtual<Int>()
+
+    fun isCoverEnabled() = getCoverDisplayState() == 3
 }

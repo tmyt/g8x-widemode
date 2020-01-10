@@ -1,16 +1,10 @@
 package net.refy.android.g8x.widemode.utils
 
 import android.content.Context
+import net.refy.android.reflect.Reflect
 
-class DisplayHelperUtils( context: Context) {
-    private val className = "com.lge.display.DisplayManagerHelper"
-
-    private val cDisplayManagerHelper = Class.forName(className)
-    private val displayManagerHelper = cDisplayManagerHelper
-        .getDeclaredConstructor(Context::class.java).newInstance(context)
-    private val mGetCoverDisplayId = cDisplayManagerHelper.getDeclaredMethod("getCoverDisplayId")
-
-    fun getCoverDisplayId(): Int {
-        return mGetCoverDisplayId.invoke(displayManagerHelper) as Int
-    }
+class DisplayHelperUtils(context: Context) : Reflect() {
+    override val type = Class.forName("com.lge.display.DisplayManagerHelper")
+    override val value = ctor(Context::class.java)(context)
+    val getCoverDisplayId by virtual<Int>()
 }

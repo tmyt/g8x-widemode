@@ -1,9 +1,7 @@
 package net.refy.android.g8x.widemode.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import net.refy.android.g8x.widemode.R

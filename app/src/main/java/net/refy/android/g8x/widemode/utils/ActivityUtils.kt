@@ -6,16 +6,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Settings
+import net.refy.android.reflect.Reflect
 
-class ActivityUtils(private val context: Context) {
-
-    private val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE)
-    private val cActivityManager = activityManager.javaClass
-    private val mSetWideMode = cActivityManager.getMethod("setWideScreenMode", Boolean::class.java)
-    private val mGetWideMode = cActivityManager.getMethod("getWideScreenMode")
-    private val mMoveToDisplayAsDisplayId =
-        cActivityManager.getMethod("moveToDisplayAsDisplayId", Int::class.java, Int::class.java)
-    private val mMoveToDisplayEx = cActivityManager.getMethod("moveToDisplayEx", Int::class.java)
+class ActivityUtils(private val context: Context) : Reflect() {
+    override val value = context.getSystemService(Context.ACTIVITY_SERVICE)
+    override val type = value.javaClass
+    val setWideScreenMode by virtual<Unit>(Boolean::class.java)
+    val getWideScreenMode by virtual<Boolean>()
+    val moveToDisplayAsDisplayId by virtual<Boolean>(Int::class.java, Int::class.java)
+    val moveToDisplayEx by virtual<Boolean>(Int::class.java)
 
     private val displayUtils = DisplayHelperUtils(context)
 
@@ -29,22 +28,6 @@ class ActivityUtils(private val context: Context) {
         val options = ActivityOptions.makeBasic()
         options.launchDisplayId = displayUtils.getCoverDisplayId()
         context.startActivity(intent, options.toBundle())
-    }
-
-    fun setWideMode(isWide: Boolean) {
-        mSetWideMode.invoke(activityManager, isWide)
-    }
-
-    fun getWideMode(): Boolean {
-        return mGetWideMode.invoke(activityManager) as Boolean
-    }
-
-    fun moveToDisplayAsDisplayId(i: Int, i2: Int) {
-        mMoveToDisplayAsDisplayId.invoke(activityManager, i, i2)
-    }
-
-    fun moveToDisplayEx(i: Int) {
-        mMoveToDisplayEx.invoke(activityManager, i)
     }
 
     fun canSwitchMode(): Boolean {
