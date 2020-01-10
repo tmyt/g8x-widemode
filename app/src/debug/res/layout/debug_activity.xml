@@ -40,5 +40,15 @@
             android:layout_height="wrap_content"
             android:text="Switch activities"
     />
+    <Button android:id="@+id/launch_on_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch app on Cover"
+    />
+    <Button android:id="@+id/start_event_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start EventReceiver"
+    />
 
 </LinearLayout>
