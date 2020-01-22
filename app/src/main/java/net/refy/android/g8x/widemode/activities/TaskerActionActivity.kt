@@ -14,7 +14,7 @@ class TaskerActionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var selectedIndex = -1
+        var selectedIndex = intent.getIntExtra("mode", -1)
         var dialog: AlertDialog? = null
         dialog = AlertDialog.Builder(this)
             .setTitle(R.string.tasker_plugin_name)
@@ -33,7 +33,7 @@ class TaskerActionActivity : AppCompatActivity() {
             .create()
         dialog.run {
             show()
-            getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+            getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = selectedIndex >= 0
         }
     }
 
