@@ -7,9 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import net.refy.android.g8x.widemode.R
 
 class TaskerActionActivity : AppCompatActivity() {
-
-    val EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB"
-    val EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE"
+    companion object {
+        const val EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB"
+        const val EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +38,8 @@ class TaskerActionActivity : AppCompatActivity() {
     }
 
     private fun makeResult(mode: Int): Intent {
-        val bundle = Intent().apply {
-            putExtra("mode", mode)
+        val bundle = Bundle().apply {
+            putInt("mode", mode)
         }
         val blurb = getString(
             when (mode) {
