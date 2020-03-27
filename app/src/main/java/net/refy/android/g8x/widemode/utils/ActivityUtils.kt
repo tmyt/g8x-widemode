@@ -6,13 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Settings
-import net.refy.android.reflect.Reflect
+import tech.onsen.reflect.Reflect
 
 class ActivityUtils(private val context: Context) : Reflect() {
-    override val value = context.getSystemService(Context.ACTIVITY_SERVICE)
-    override val type = value.javaClass
-    val setWideScreenMode by virtual<Unit>(Boolean::class.java)
-    val getWideScreenMode by virtual<Boolean>()
+    override val type by lazy { value.javaClass }
+    override val value by lazy { context.getSystemService(Context.ACTIVITY_SERVICE) }
     val moveToDisplayAsDisplayId by virtual<Boolean>(Int::class.java, Int::class.java)
     val moveToDisplayEx by virtual<Boolean>(Int::class.java)
 
