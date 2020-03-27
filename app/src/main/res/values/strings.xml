@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">G8X WideMode</string>
+    <string name="app_name" translatable="false">WideMode for LG</string>
     <string name="qs_label">Wide Mode</string>
     <string name="error_remote_exception">Error occurred while mode changing.</string>
     <string name="error_no_secure_writeable">Turn on "Keep the same as main screen" from System Settings.</string>
