@@ -6,15 +6,27 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Settings
-import tech.onsen.reflect.Reflect
+import net.refy.android.g8x.widemode.reflect.ActivityServiceReflect
+import net.refy.android.g8x.widemode.reflect.DisplayManagerHelperReflect
 
-class ActivityUtils(private val context: Context) : Reflect() {
-    override val type by lazy { value.javaClass }
-    override val value by lazy { context.getSystemService(Context.ACTIVITY_SERVICE) }
-    val moveToDisplayAsDisplayId by virtual<Boolean>(Int::class.java, Int::class.java)
-    val moveToDisplayEx by virtual<Boolean>(Int::class.java)
+class ActivityUtils(private val context: Context){
 
-    private val displayUtils = DisplayHelperUtils(context)
+    private val activityService = ActivityServiceReflect(context)
+    private val displayManagerHelper = DisplayManagerHelperReflect(context)
+
+    fun getWideScreenMode(): Boolean{
+        if(activityService.getWideScreenMode.available){
+            return activityService.getWideScreenMode()
+        }
+        return displayManagerHelper.getWideScreenMode()
+    }
+
+    fun setWideScreenMode(z: Boolean){
+        if(activityService.setWideScreenMode.available){
+            return activityService.setWideScreenMode(z)
+        }
+        return displayManagerHelper.setWideScreenMode(z)
+    }
 
     fun startActivityInMainDisplay(intent: Intent) {
         val options = ActivityOptions.makeBasic()
@@ -24,7 +36,7 @@ class ActivityUtils(private val context: Context) : Reflect() {
 
     fun startActivityInCoverDisplay(intent: Intent) {
         val options = ActivityOptions.makeBasic()
-        options.launchDisplayId = displayUtils.getCoverDisplayId()
+        options.launchDisplayId = displayManagerHelper.getCoverDisplayId()
         context.startActivity(intent, options.toBundle())
     }
 

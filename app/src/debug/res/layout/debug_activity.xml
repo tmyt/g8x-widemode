@@ -51,4 +51,11 @@
             android:text="Start EventReceiver"
     />
 
+    <ToggleButton android:id="@+id/keep_cover_on"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textOn="keepCoverOnWhenFlipped: true"
+                  android:textOff="keepCoverOnWhenFlipped: false"
+    />
+
 </LinearLayout>

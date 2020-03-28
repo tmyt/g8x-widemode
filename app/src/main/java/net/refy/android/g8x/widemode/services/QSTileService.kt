@@ -6,28 +6,28 @@ import android.service.quicksettings.TileService
 import android.widget.Toast
 import androidx.annotation.StringRes
 import net.refy.android.g8x.widemode.R
+import net.refy.android.g8x.widemode.reflect.DisplayManagerHelperReflect
+import net.refy.android.g8x.widemode.reflect.StatusBarManagerReflect
 import net.refy.android.g8x.widemode.utils.ActivityUtils
-import net.refy.android.g8x.widemode.utils.DisplayHelperUtils
-import net.refy.android.g8x.widemode.utils.StatusBarUtils
 
 class QSTileService : TileService() {
     private lateinit var activityUtils: ActivityUtils
-    private lateinit var displayUtils: DisplayHelperUtils
-    private lateinit var statusBarUtils: StatusBarUtils
+    private lateinit var displayUtils: DisplayManagerHelperReflect
+    private lateinit var statusBarUtils: StatusBarManagerReflect
     private var isWide = false
 
     override fun onCreate() {
         super.onCreate()
         activityUtils = ActivityUtils(applicationContext)
-        displayUtils = DisplayHelperUtils(applicationContext)
-        statusBarUtils = StatusBarUtils(applicationContext)
+        displayUtils = DisplayManagerHelperReflect(applicationContext)
+        statusBarUtils = StatusBarManagerReflect(applicationContext)
     }
 
     override fun onClick() {
         super.onClick()
         if(activityUtils.canSwitchMode()){
             try {
-                displayUtils.setWideScreenMode(!isWide)
+                activityUtils.setWideScreenMode(!isWide)
                 isWide = !isWide
             } catch (e: RemoteException) {
                 showToast(R.string.error_remote_exception)
