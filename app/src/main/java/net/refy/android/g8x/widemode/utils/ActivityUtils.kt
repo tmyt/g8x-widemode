@@ -32,7 +32,6 @@ class ActivityUtils(private val context: Context) {
 
     fun getWideScreenMode(): Boolean {
         if (!activityService.getWideScreenMode.available) {
-            showError()
             return false
         }
         return activityService.getWideScreenMode()
