@@ -41,7 +41,7 @@ class QSTileService : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
-        isWide = displayUtils.getWideScreenMode()
+        isWide = activityUtils.getWideScreenMode()
         updateState()
     }
 

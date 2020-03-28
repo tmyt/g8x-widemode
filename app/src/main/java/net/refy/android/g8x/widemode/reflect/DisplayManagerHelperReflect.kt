@@ -8,9 +8,7 @@ class DisplayManagerHelperReflect(context: Context) : Reflect("com.lge.display.D
 
     val getCoverDisplayId by virtual<Int>()
     val getCoverDisplayState by virtual<Int>()
-    val getWideScreenMode by virtual<Boolean>()
     val keepCoverOnWhenFlipped by virtual<Unit>(Boolean::class.java)
-    val setWideScreenMode by virtual<Unit>(Boolean::class.java)
 
     fun isCoverEnabled() = getCoverDisplayState() == 3
 }

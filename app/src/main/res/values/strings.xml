@@ -8,4 +8,6 @@
     <string name="tasker_plugin_mode_on">Turn ON</string>
     <string name="tasker_plugin_mode_off">Turn OFF</string>
     <string name="tasker_plugin_mode_toggle">Toggle</string>
+    <string name="error_not_supported">Not Supported</string>
+    <string name="error_not_supported_text">Your device \"%1$s (%2$s)\" not supported WideMode.</string>
 </resources>

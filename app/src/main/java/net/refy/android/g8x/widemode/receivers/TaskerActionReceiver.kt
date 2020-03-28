@@ -16,7 +16,7 @@ class TaskerActionReceiver : BroadcastReceiver() {
         if (!activityUtils.canSwitchMode() || !displayUtils.isCoverEnabled()) {
             return
         }
-        val isInWideMode = displayUtils.getWideScreenMode()
+        val isInWideMode = activityUtils.getWideScreenMode()
         when (mode) {
             0 -> activityUtils.setWideScreenMode(true)
             1 -> activityUtils.setWideScreenMode(false)

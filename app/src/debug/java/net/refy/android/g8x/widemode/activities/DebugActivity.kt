@@ -15,15 +15,13 @@ import tech.onsen.reflect.Reflect
 
 class DebugActivity : Activity() {
     class LGPowerManagerHelper(context: Context) : Reflect() {
-        class LGContext(context: Context) : Reflect() {
-            override val type: Class<*> = Class.forName("com.lge.systemservice.core.LGContext")
+        class LGContext(context: Context) : Reflect("com.lge.systemservice.core.LGContext") {
             override val value = ctor(Context::class.java)(context)
             val getLGSystemService by virtual<Any>(String::class.java)
         }
-
         private val lgContext = LGContext(context)
-        override val value = lgContext.getLGSystemService("lgpowermanagerhelper")
-        override val type = value.javaClass
+        override val type by lazy { value.javaClass }
+        override val value by lazy { lgContext.getLGSystemService("lgpowermanagerhelper") }
         val checkDualDisplayPowerOn by virtual<Unit>(Boolean::class.java)
     }
 

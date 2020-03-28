@@ -2,30 +2,47 @@ package net.refy.android.g8x.widemode.utils
 
 import android.Manifest
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.provider.Settings
+import net.refy.android.g8x.widemode.R
 import net.refy.android.g8x.widemode.reflect.ActivityServiceReflect
 import net.refy.android.g8x.widemode.reflect.DisplayManagerHelperReflect
 
-class ActivityUtils(private val context: Context){
+class ActivityUtils(private val context: Context) {
 
     private val activityService = ActivityServiceReflect(context)
     private val displayManagerHelper = DisplayManagerHelperReflect(context)
 
-    fun getWideScreenMode(): Boolean{
-        if(activityService.getWideScreenMode.available){
-            return activityService.getWideScreenMode()
-        }
-        return displayManagerHelper.getWideScreenMode()
+    private fun showError(){
+        val message = context.getString(
+            R.string.error_not_supported_text,
+            Build.MODEL, Build.DEVICE
+        )
+        AlertDialog.Builder(context)
+            .setPositiveButton("OK") { _, _ -> }
+            .setTitle(R.string.error_not_supported)
+            .setMessage(message)
+            .create()
+            .show()
     }
 
-    fun setWideScreenMode(z: Boolean){
-        if(activityService.setWideScreenMode.available){
-            return activityService.setWideScreenMode(z)
+    fun getWideScreenMode(): Boolean {
+        if (!activityService.getWideScreenMode.available) {
+            showError()
+            return false
         }
-        return displayManagerHelper.setWideScreenMode(z)
+        return activityService.getWideScreenMode()
+    }
+
+    fun setWideScreenMode(z: Boolean) {
+        if (!activityService.setWideScreenMode.available) {
+            return showError()
+        }
+        return activityService.setWideScreenMode(z)
     }
 
     fun startActivityInMainDisplay(intent: Intent) {
