@@ -12,8 +12,25 @@
                  android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
 
         <uses-library android:name="com.lge.sui" android:required="true"/>
+        <uses-library android:name="com.lge.app.floating" android:required="false"/>
+
         <meta-data android:name="com.lge.dontrestart_movetodisplay" android:value="true"/>
 
+        <activity android:name=".activities.TaskerActionActivity" android:label="@string/tasker_plugin_name"
+                  android:theme="@style/AppTheme.Transparent">
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/qs_label" android:name=".activities.ToggleWideModeActivity"
+                  android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="com.lge.intent.category.QSLIDE"/>
+            </intent-filter>
+            <meta-data android:name="cleartask" android:value="false"/>
+            <meta-data android:name="min version" android:value="2.5"/>
+        </activity>
         <service android:name=".services.QSTileService"
                  android:label="@string/qs_label"
                  android:icon="@drawable/qs"
@@ -22,12 +39,7 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
-        <activity android:name=".activities.TaskerActionActivity" android:label="@string/tasker_plugin_name"
-                  android:theme="@style/AppTheme.Transparent">
-            <intent-filter>
-                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING"/>
-            </intent-filter>
-        </activity>
+        <service android:name=".services.QslideService"/>
         <receiver android:name=".receivers.TaskerActionReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING"/>
