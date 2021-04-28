@@ -4,7 +4,7 @@
     <application tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".activities.DebugActivity">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER_"/>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>

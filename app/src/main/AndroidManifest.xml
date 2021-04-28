@@ -1,48 +1,79 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="net.refy.android.g8x.widemode">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="net.refy.android.g8x.widemode">
 
-    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission
+            android:name="android.permission.WRITE_SECURE_SETTINGS"
+            tools:ignore="ProtectedPermissions" />
 
-    <application android:allowBackup="false"
-                 android:label="@string/app_name"
-                 android:icon="@mipmap/ic_launcher"
-                 android:roundIcon="@mipmap/ic_launcher_round"
-                 android:supportsRtl="true"
-                 android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
+    <application
+            android:allowBackup="false"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
 
-        <uses-library android:name="com.lge.sui" android:required="true"/>
-        <uses-library android:name="com.lge.app.floating" android:required="false"/>
+        <uses-library
+                android:name="com.lge.sui"
+                android:required="true" />
+        <uses-library
+                android:name="com.lge.app.floating"
+                android:required="false" />
 
-        <meta-data android:name="com.lge.dontrestart_movetodisplay" android:value="true"/>
+        <meta-data
+                android:name="com.lge.dontrestart_movetodisplay"
+                android:value="true" />
 
-        <activity android:name=".activities.TaskerActionActivity" android:label="@string/tasker_plugin_name"
-                  android:theme="@style/AppTheme.Transparent">
+        <activity
+                android:name=".activities.TaskerActionActivity"
+                android:label="@string/tasker_plugin_name"
+                android:theme="@style/AppTheme.Transparent">
             <intent-filter>
-                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING"/>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/qs_label" android:name=".activities.ToggleWideModeActivity"
-                  android:theme="@android:style/Theme.NoDisplay">
+        <activity
+                android:label="@string/qs_label"
+                android:name=".activities.ToggleWideModeActivity"
+                android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="com.lge.intent.category.QSLIDE"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.lge.intent.category.QSLIDE" />
             </intent-filter>
-            <meta-data android:name="cleartask" android:value="false"/>
-            <meta-data android:name="min version" android:value="2.5"/>
+
+            <meta-data
+                    android:name="cleartask"
+                    android:value="false" />
+            <meta-data
+                    android:name="min version"
+                    android:value="2.5" />
         </activity>
-        <service android:name=".services.QSTileService"
-                 android:label="@string/qs_label"
-                 android:icon="@drawable/qs"
-                 android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+        <activity android:name=".activities.SettingsActivity">
             <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".services.QSTileService"
+                android:label="@string/qs_label"
+                android:icon="@drawable/qs"
+                android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-        <service android:name=".services.QslideService"/>
-        <receiver android:name=".receivers.TaskerActionReceiver" android:exported="true">
+        <service android:name=".services.QslideService" />
+
+        <receiver
+                android:name=".receivers.TaskerActionReceiver"
+                android:exported="true">
             <intent-filter>
-                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING"/>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>
         </receiver>
     </application>

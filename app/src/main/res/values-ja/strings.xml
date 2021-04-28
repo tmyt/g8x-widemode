@@ -10,4 +10,6 @@
     <string name="tasker_plugin_mode_toggle">トグル</string>
     <string name="error_not_supported">非対応デバイスです</string>
     <string name="error_not_supported_text">使用中のデバイス \"%1$s (%2$s)\" は、ワイドモードに対応していません。</string>
+    <string name="settings_experimental">実験中</string>
+    <string name="settings_ignore_secure_writable">システム設定の確認をスキップする</string>
 </resources>

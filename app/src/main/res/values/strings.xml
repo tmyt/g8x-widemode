@@ -10,4 +10,6 @@
     <string name="tasker_plugin_mode_toggle">Toggle</string>
     <string name="error_not_supported">Not Supported</string>
     <string name="error_not_supported_text">Your device \"%1$s (%2$s)\" not supported WideMode.</string>
+    <string name="settings_experimental">Experimental</string>
+    <string name="settings_ignore_secure_writable">Ignore system settings check</string>
 </resources>

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
+import androidx.preference.PreferenceManager
 import net.refy.android.g8x.widemode.R
 import net.refy.android.g8x.widemode.reflect.ActivityServiceReflect
 import net.refy.android.g8x.widemode.reflect.DisplayManagerHelperReflect
@@ -17,7 +18,7 @@ class ActivityUtils(private val context: Context) {
     private val activityService = ActivityServiceReflect(context)
     private val displayManagerHelper = DisplayManagerHelperReflect(context)
 
-    private fun showError(){
+    private fun showError() {
         val message = context.getString(
             R.string.error_not_supported_text,
             Build.MODEL, Build.DEVICE
@@ -57,7 +58,9 @@ class ActivityUtils(private val context: Context) {
     }
 
     fun canSwitchMode(): Boolean {
-        return getGlobalScreenBrightnessMode() == 1 || isSecureWriteable()
+        return PreferenceManager.getDefaultSharedPreferences(context)
+            .getBoolean("ignore_secure_writable", false) ||
+                getGlobalScreenBrightnessMode() == 1 || isSecureWriteable()
     }
 
     private fun isSecureWriteable(): Boolean {
